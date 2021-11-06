@@ -7,10 +7,21 @@ li {
   list-style: none;
 }
 
+input {
+  background: none;
+  border: none;
+}
+
+input,
+textarea:focus {
+  border: none;
+}
+
 body {
   background: black;
   color: white;
   font-family: 'Zen Antique', serif;
+  padding: 0 50px;
 }
 
 /*- header  */
@@ -47,7 +58,13 @@ h1 {
 }
 
 /*- main */
+
 main {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+section {
   display: flex;
   text-align: center;
   flex-wrap: wrap;
@@ -65,7 +82,7 @@ img {
 
 /*- 資訊區 */
 
-section {
+.product_content {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
@@ -96,7 +113,7 @@ h2 {
 
 /*- button & 購物車 */
 
-.cart_area {
+.product_cart {
   /* flex: 1 1 100%; */
   margin-top: 20px;
   display: flex;
@@ -118,7 +135,7 @@ h2 {
   transition: all 0.3s linear;
 }
 
-#cart {
+.cart {
   flex: 0 0 10%;
   box-sizing: border-box;
   display: flex;
@@ -133,6 +150,84 @@ h2 {
   color: black;
 }
 
-#cart i {
+.cart i {
   margin-right: 10px;
+}
+
+/*- review  */
+
+.review {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.review p {
+  font-size: 28px;
+}
+.review ul {
+  padding: 0;
+}
+
+li:not(p) {
+  border-bottom: 1px solid white;
+  /* text-decoration: underline; */
+}
+
+.review li + li {
+  margin-top: 10px;
+}
+
+.reviewForm {
+  width: 60%;
+  gap: 10px;
+  border-radius: 5px;
+  padding: 20px;
+  color: white;
+  background: none;
+  border: 1px solid white;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+input[type='text'] {
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  /* border-bottom: 1px solid white; */
+}
+
+select {
+  width: 80px;
+  text-align: center;
+}
+
+textarea {
+  flex: 0 1 100%;
+  resize: none;
+  padding: 15px;
+}
+
+label[for='review'] {
+  flex: 1 1 100%;
+}
+
+input[type='submit'] {
+  font-family: 'Zen Antique', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  box-shadow: -4px 4px 1px white;
+  width: 40%;
+  padding: 10px;
+  border: 1px solid white;
+  margin: 10px auto;
+  transition: all 0.5s linear;
+}
+
+input[type='submit']:hover {
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+  box-shadow: -4px 4px 1px white;
 }
