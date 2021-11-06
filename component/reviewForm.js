@@ -2,6 +2,8 @@ app.component('review-form', {
   template:
     /*html*/
     `
+    <div class="review">
+        <p>Review</p>
     <ul>
     <li v-for='review in reviews'>{{review.name}} rates stars{{review.rating}}
     <p>" {{review.comment}} "</p>
