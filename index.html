@@ -6,10 +6,6 @@
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <title>Hooo Shopping</title>
 
-
-  <!-- my css-->
-  <link rel='stylesheet' href='./style.css'>
-
   <!-- google font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,74 +13,54 @@
 
   <!-- fontawesome-->
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+
+  <!-- my css-->
+  <link rel='stylesheet' href='./style.css'>
+
+  <!-- import vue3 -->
+  <script src="https://unpkg.com/vue@next"></script>
+
 </head>
 
 <body>
-  <header>
-    <h1> Hooo</h1>
-    <nav>
-      <a class='nav_link'>About</a>
-      <a class='nav_link focus'>Product</a>
-      <a class='nav_link'>My Cart</a>
-    </nav>
-  </header>
-  <main id='product-info'>
-    <figure>
-      <img v-bind:src='image' alt="macaroon">
-    </figure>
-    <section>
-      <h2>{{title}}</h2>
-      <p v-if='inStock>10'>in stock</p>
-      <p v-else-if='inStock>0'>sold out soon!</p>
-      <p v-else>out of stock</p>
-      <ul class='packList'>
-        <li class='package' v-for='(product,index) in products' @mouseover='changeInfo(product,index)'>
-          {{product.des}}</li>
-      </ul>
-      <div class='cart_area'>
-        <button @click='addCart' :disabled='!inStock' class='button' type="button">Add</button>
-        <button @click='removeCart' class='button' type="button">Remove</button>
-        <div id='cart'><i class="fas fa-shopping-cart"></i><span>{{cart}}</span></div>
+  <div id='app'>
+    <header>
+      <h1> Hooo.</h1>
+      <nav>
+        <a class='nav_link'>About</a>
+        <a class='nav_link focus'>Product</a>
+        <a class='nav_link'>My Cart</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- component 產品資訊欄-->
+      <product-display :premium='premium'></product-display>
+
+      <div class="review">
+        <p>Review</p>
+
+        <!-- component 意見調查表 -->
+        <review-form></review-form>
+
       </div>
-    </section>
+    </main>
+  </div>
 
-  </main>
-  <script src="https://unpkg.com/vue@next"></script>
 
+  <!-- 引入main -->
+  <script src='./main.js'></script>
+
+  <!-- 引入 component -->
+  <script src='./component/productDisplay.js'></script>
+
+  <!-- 引入 component -->
+  <script src='./component/reviewForm.js'></script>
+
+
+  <!-- mount -->
   <script>
-    const app = Vue.createApp({
-      data() {
-        return {
-          title: 'Macaroon',
-          packageIndex: 0,
-          cart: 0,
-          products:
-            [{ des: 'single pack', image: './image/macaroon-3.jpg', quantity: 20 }, { des: '3 pack', image: './image/macaroon-1.jpg', quantity: 0 }, { des: '5 pack', image: './image/macaroon-2.jpg', quantity: 30 }]
-        }
-      },
-      methods: {
-        addCart() {
-          return this.cart++
-        },
-        removeCart() {
-          return this.cart <= 0 ? 0 : this.cart--
-          console.log(cart)
-        },
-        changeInfo(target, targetIndex) {
-          console.log(targetIndex)
-          return this.packageIndex = targetIndex
-        },
-      },
-      computed: {
-        image() {
-          return this.products[this.packageIndex].image;
-        },
-        inStock() {
-          return this.products[this.packageIndex].quantity;
-        }
-      }
-    }).mount('#product-info')
-
+    app.mount('#app')
   </script>
 </body>
 
